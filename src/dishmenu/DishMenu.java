@@ -5,6 +5,10 @@
  */
 package dishmenu;
 
+import com.sun.javaws.Main;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Scanner;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,37 +19,46 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author csc190
+ * @author Jagoda
  */
-public class DishMenu extends Application {
+public class DishMenu extends Application 
+{
+     public static void main(String[] args) 
+    {
+        launch(args);
+    }
+     
+    protected Scanner s; //looking through 
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) 
+    {
+        
+        
+        //This will create a window with 
+        //Tab that says "SmartRestaurant Table 2"
+        //Inside the window a button: "WELCOME TO SMARTRESTAURANT! Click here to enter the MENU
+        primaryStage.setTitle("SmartRestaurant Table 2");
         Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
+        btn.setText("WELCOME TO SMARTRESTAURANT! Click here to enter the MENU");
+        btn.setOnAction(new EventHandler<ActionEvent>() 
+        {
             @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+            public void handle(ActionEvent event) 
+            {
+                DishViewing mys = new DishViewing();//pass a list of dishes here 
+                mys.initScreen();//we want an empty screen with the standard things on it
+                //mys.refresh();
+                mys.showAndWait();
+                System.out.println("SmartRestaurant Table 2");
             }
         });
         
         StackPane root = new StackPane();
         root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(new Scene(root, 500, 250));
         primaryStage.show();
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
+        
+        
+    }  
 }
